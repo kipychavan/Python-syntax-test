@@ -1,0 +1,6 @@
+{
+    "s3_bucket_name" : "de-airflow-sandbox",
+    "sf_db_name" : "db_raw_sandbox",
+    "sf_stage_name" : "sf_stage_sandbox",
+    "sf_file_format_pipe" : "file_format_sandbox"
+}

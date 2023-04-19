@@ -1,0 +1,86 @@
+# 'dags_dir_path' key to store the local path ( i.e. cloned repository ) where DAGs are to be created .
+#   Example: dags_dir_path: 'C:/Users/GauravBhatt/de-snowflake-airflow-processing/dags/raw/sales/sales/alpha_sales'
+dags_dir_path: 'C:\Users\BharathKumarReddyTha\Documents\client_projects\rndc\de-snowflake-airflow-processing\dags\raw\customer\ar_customer\alpha_ar_customer'
+
+# 'common_values' key contain hierarchy of keys which are common while creating different market DAGs.
+#   'global_config_path': S3 bucket path of 'globalConfig.json'(don't edit this parameter).
+#     Example: global_config_path: 'dags/raw/globalConfig.json'
+#   'dag_config_path': S3 bucket path to DAG level configuration JSON i.e. <erp>_<feed>_config.json(do edit this parameter)
+#     Example: dag_config_path: 'dags/raw/sales/sales/alpha_sales/config/alpha_sales_config.json'
+#   'base_table_name': Table name as <erp>_<feed>(do edit this parameter)
+#     Example: base_table_name: 'alpha_sales' ( Ex: ERP: 'alpha' + Feed: 'sales' = 'alpha_sales' )
+common_values: 
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/customer/ar_customer/alpha_ar_customer/config/alpha_ar_customer_config.json'
+  base_table_name: 'alpha_ar_customer'
+
+# 'market_dag_list' key contains list of market DAGs that are to be created(do edit this parameter).
+#  For a given market,add the entry as: - market_ext: 'xxx'('xxx' =three-character market code) 
+#   Example: For market 'new', add entry as: - market_ext: 'new'
+
+market_dag_list:
+  - market_ext: 'abq'
+  - market_ext: 'ash'
+  - market_ext: 'atl'
+  - market_ext: 'cfl'
+  - market_ext: 'col'
+  - market_ext: 'den'
+  - market_ext: 'dfb'
+  - market_ext: 'far'
+  - market_ext: 'ind'
+  - market_ext: 'jac'
+  - market_ext: 'jes'
+  - market_ext: 'laf'
+  - market_ext: 'nor'
+  - market_ext: 'okl'
+  - market_ext: 'oma'
+  - market_ext: 'pen'
+  - market_ext: 'sav'
+  - market_ext: 'sio'
+  - market_ext: 'tam'
+  - market_ext: 'wsd'
+
+
+# 'config_values' key contains hierarchy of key-value pairs, that will be used to create <erp>_<feed> level configuration JSON file.
+#   'src_base_folder': S3 source files path till 'inbound' directory ( <erp>/<domain>/inbound )(do edit this parameter)
+#     Example: src_base_folder: 'alpha/sales/inbound'
+#   'sql_template_path': S3 'dags' directory path for current <erp>_<feed> till 'sf_sql'(do edit this parameter)
+#     Example: sql_template_path: 'dags/raw/sales/sales/alpha_sales/sf_sql'
+#   'sf_schema': Snowflake schema containing table(do edit this parameter)
+#     Example: sf_schema: 'sales'
+#   'sf_hist_table': Snowflake HIST table name(do edit this parameter)
+#     Example: sf_hist_table: 'alpha_sales_hist'
+#   'sf_snap_table': Snowflake SNAP table name(do edit this parameter)
+#   'sf_hist_stream': Snowflake stream name on HIST table(do edit this parameter)
+#     Example: sf_hist_stream: 'alpha_sales_hist_stream'
+#   'market_src_files': Key contains values of source file name for every applicable market(do edit this parameter)
+#     Key Format: market_file_<market_extension>
+#     Example: market_file_new: 'etl_sales.new' ( for market 'new' )
+config_values:
+  src_base_folder: 'alpha/customer/inbound'
+  sql_template_path: 'dags/raw/customer/ar_customer/alpha_ar_customer/sf_sql'
+  sf_schema: 'customer'
+  sf_hist_table: 'alpha_ar_customer_hist'
+  sf_snap_table: 'alpha_ar_customer_snap'
+  sf_hist_stream: 'alpha_ar_customer_hist_stream'
+  market_src_files: 
+    market_file_abq: 'etl_ar_customer.abq'
+    market_file_ash: 'etl_ar_customer.ash'
+    market_file_atl: 'etl_ar_customer.atl'
+    market_file_cfl: 'etl_ar_customer.cfl'
+    market_file_col: 'etl_ar_customer.col'
+    market_file_den: 'etl_ar_customer.den'
+    market_file_dfb: 'etl_ar_customer.dfb'
+    market_file_far: 'etl_ar_customer.far'
+    market_file_ind: 'etl_ar_customer.ind'
+    market_file_jac: 'etl_ar_customer.jac'
+    market_file_jes: 'etl_ar_customer.jes'
+    market_file_laf: 'etl_ar_customer.laf'
+    market_file_nor: 'etl_ar_customer.nor'
+    market_file_okl: 'etl_ar_customer.okl'
+    market_file_oma: 'etl_ar_customer.oma'
+    market_file_pen: 'etl_ar_customer.pen'
+    market_file_sav: 'etl_ar_customer.sav'
+    market_file_sio: 'etl_ar_customer.sio'
+    market_file_tam: 'etl_ar_customer.tam'
+    market_file_wsd: 'etl_ar_customer.wsd'

@@ -1,0 +1,1 @@
+{"src_base_folder": "asw/product/inbound", "sql_template_path": "dags/raw/product/product_vendor/asw_product_vendor/sf_sql", "sf_schema": "product", "sf_hist_table": "asw_product_vendor_hist", "sf_snap_table": "asw_product_vendor_snap", "sf_hist_stream": "asw_product_vendor_hist_stream", "market_src_files": {"market_file_csv": "etl_prod_division.csv"}}

@@ -1,0 +1,59 @@
+# 'dags_dir_path' key to store the local path ( i.e. cloned repository ) where DAGs are to be created .
+#   Example: dags_dir_path: 'C:/Users/GauravBhatt/de-snowflake-airflow-processing/dags/raw/sales/sales/alpha_sales'
+dags_dir_path: 'C:\Users\jaddussridevi\Sridevi\Client Projects\RNDC\rndc-airflow-src\de-snowflake-airflow-processing\dags\raw\organization\salesperson_email\asw_salesperson_email'
+
+# 'common_values' key contain hierarchy of keys which are common while creating different market DAGs.
+#   'global_config_path': S3 bucket path of 'globalConfig.json'(don't edit this parameter).
+#     Example: global_config_path: 'dags/raw/globalConfig.json'
+#   'dag_config_path': S3 bucket path to DAG level configuration JSON i.e. <erp>_<feed>_config.json(do edit this parameter)
+#     Example: dag_config_path: 'dags/raw/sales/sales/alpha_sales/config/alpha_sales_config.json'
+#   'base_table_name': Table name as <erp>_<feed>(do edit this parameter)
+#     Example: base_table_name: 'alpha_sales' ( Ex: ERP: 'alpha' + Feed: 'sales' = 'alpha_sales' )
+common_values: 
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/organization/salesperson_email/asw_salesperson_email/config/asw_salesperson_email_config.json'
+  base_table_name: 'asw_salesperson_email'
+
+# 'market_dag_list' key contains list of market DAGs that are to be created(do edit this parameter).
+#  For a given market,add the entry as: - market_ext: 'xxx'('xxx' =three-character market code) 
+#   Example: For market 'new', add entry as: - market_ext: 'new'
+
+market_dag_list:
+  - market_ext: 'cc1'
+  - market_ext: 'el1'
+  - market_ext: 'gp1'
+  - market_ext: 'ho1'
+  - market_ext: 'lb1'
+  - market_ext: 'sa1'
+
+
+# 'config_values' key contains hierarchy of key-value pairs, that will be used to create <erp>_<feed> level configuration JSON file.
+#   'src_base_folder': S3 source files path till 'inbound' directory ( <erp>/<domain>/inbound )(do edit this parameter)
+#     Example: src_base_folder: 'alpha/sales/inbound'
+#   'sql_template_path': S3 'dags' directory path for current <erp>_<feed> till 'sf_sql'(do edit this parameter)
+#     Example: sql_template_path: 'dags/raw/sales/sales/alpha_sales/sf_sql'
+#   'sf_schema': Snowflake schema containing table(do edit this parameter)
+#     Example: sf_schema: 'sales'
+#   'sf_hist_table': Snowflake HIST table name(do edit this parameter)
+#     Example: sf_hist_table: 'alpha_sales_hist'
+#   'sf_snap_table': Snowflake SNAP table name(do edit this parameter)
+#   'sf_hist_stream': Snowflake stream name on HIST table(do edit this parameter)
+#     Example: sf_hist_stream: 'alpha_sales_hist_stream'
+#   'market_src_files': Key contains values of source file name for every applicable market(do edit this parameter)
+#     Key Format: market_file_<market_extension>
+#     Example: market_file_new: 'etl_sales.new' ( for market 'new' )
+config_values:
+  src_base_folder: 'asw/organization/inbound'
+  sql_template_path: 'dags/raw/organization/salesperson_email/asw_salesperson_email/sf_sql'
+  sf_schema: 'organization'
+  sf_hist_table: 'asw_salesperson_email_hist'
+  sf_snap_table: 'asw_salesperson_email_snap'
+  sf_hist_stream: 'asw_salesperson_email_hist_stream'
+  market_src_files: 
+    market_file_cc1: 'etl_salesman_email.cc1'
+    market_file_el1: 'etl_salesman_email.el1'
+    market_file_gp1: 'etl_salesman_email.gp1'
+    market_file_ho1: 'etl_salesman_email.ho1'
+    market_file_lb1: 'etl_salesman_email.lb1'
+    market_file_sa1: 'etl_salesman_email.sa1'
+  

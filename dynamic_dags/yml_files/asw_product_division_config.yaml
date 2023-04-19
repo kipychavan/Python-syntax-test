@@ -1,0 +1,29 @@
+dags_dir_path: 'C:\projects\de-snowflake-airflow-processing\dags\raw\product\product_division\asw_product_division'
+
+common_values:
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/product/product_division/asw_product_division/config/asw_product_division_config.json'
+  base_table_name: 'asw_product_division'
+
+market_dag_list:
+  - market_ext: 'cc1'
+  - market_ext: 'el1'
+  - market_ext: 'gp1'
+  - market_ext: 'ho1'
+  - market_ext: 'lb1'
+  - market_ext: 'sa1'
+
+config_values:
+  src_base_folder: 'asw/product/inbound'
+  sql_template_path: 'dags/raw/product/product_division/asw_product_division/sf_sql'
+  sf_schema: 'product'
+  sf_hist_table: 'asw_product_division_hist'
+  sf_snap_table: 'asw_product_division_snap'
+  sf_hist_stream: 'asw_product_division_hist_stream'
+  market_src_files:
+    market_file_cc1: 'etl_prod_division.cc1'
+    market_file_el1: 'etl_prod_division.el1'
+    market_file_gp1: 'etl_prod_division.gp1'
+    market_file_ho1: 'etl_prod_division.ho1'
+    market_file_lb1: 'etl_prod_division.lb1'
+    market_file_sa1: 'etl_prod_division.sa1'

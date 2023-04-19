@@ -1,0 +1,31 @@
+dags_dir_path: 'C:\projects\de-snowflake-airflow-processing\dags\raw\product\product_division\youngs_oracle_product_division'
+
+common_values:
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/product/product_division/youngs_oracle_product_division/config/youngs_oracle_product_division_config.json'
+  base_table_name: 'youngs_oracle_product_division'
+
+market_dag_list:
+  - market_ext: 'aub'
+  - market_ext: 'dgo'
+  - market_ext: 'nca'
+  - market_ext: 'por'
+  - market_ext: 'rvr'
+  - market_ext: 'sca'
+  - market_ext: 'tra'
+
+config_values:
+  src_base_folder: 'youngs-oracle/product/inbound'
+  sql_template_path: 'dags/raw/product/product_division/youngs_oracle_product_division/sf_sql'
+  sf_schema: 'product'
+  sf_hist_table: 'youngs_oracle_product_division_hist'
+  sf_snap_table: 'youngs_oracle_product_division_snap'
+  sf_hist_stream: 'youngs_oracle_product_division_hist_stream'
+  market_src_files:
+    market_file_aub: 'etl_prod_division.aub'
+    market_file_dgo: 'etl_prod_division.dgo'
+    market_file_nca: 'etl_prod_division.nca'
+    market_file_por: 'etl_prod_division.por'
+    market_file_rvr: 'etl_prod_division.rvr'
+    market_file_sca: 'etl_prod_division.sca'
+    market_file_tra: 'etl_prod_division.tra'

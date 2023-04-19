@@ -1,0 +1,86 @@
+# 'dags_dir_path' key to store the local path ( i.e. cloned repository ) where DAGs are to be created .
+#   Example: dags_dir_path: 'C:/Users/GauravBhatt/de-snowflake-airflow-processing/dags/raw/sales/sales/alpha_sales'
+dags_dir_path: 'C:\Users\ymcnjafari\Nina Jafari\Python\GitHub_root\de-snowflake-airflow-processing\dags\raw\organization\division\alpha_division'
+
+# 'common_values' key contain hierarchy of keys which are common while creating different market DAGs.
+#   'global_config_path': S3 bucket path of 'globalConfig.json'(don't edit this parameter).
+#     Example: global_config_path: 'dags/raw/globalConfig.json'
+#   'dag_config_path': S3 bucket path to DAG level configuration JSON i.e. <erp>_<feed>_config.json(do edit this parameter)
+#     Example: dag_config_path: 'dags/raw/sales/sales/alpha_sales/config/alpha_sales_config.json'
+#   'base_table_name': Table name as <erp>_<feed>(do edit this parameter)
+#     Example: base_table_name: 'alpha_sales' ( Ex: ERP: 'alpha' + Feed: 'sales' = 'alpha_sales' )
+common_values: 
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/organization/division/alpha_division/config/alpha_division_config.json'
+  base_table_name: 'alpha_division'
+
+# 'market_dag_list' key contains list of market DAGs that are to be created(do edit this parameter).
+#  For a given market,add the entry as: - market_ext: 'xxx'('xxx' =three-character market code) 
+#   Example: For market 'new', add entry as: - market_ext: 'new'
+
+market_dag_list:
+  - market_ext: 'abq'
+  - market_ext: 'ash'
+  - market_ext: 'atl'
+  - market_ext: 'cfl'
+  - market_ext: 'col'
+  - market_ext: 'den'
+  - market_ext: 'dfb'
+  - market_ext: 'far'
+  - market_ext: 'ind'
+  - market_ext: 'jac'
+  - market_ext: 'jes'
+  - market_ext: 'laf'
+  - market_ext: 'nor'
+  - market_ext: 'okl'
+  - market_ext: 'oma'
+  - market_ext: 'pen'
+  - market_ext: 'sav'
+  - market_ext: 'sio'
+  - market_ext: 'tam'
+  - market_ext: 'wsd'
+
+
+# 'config_values' key contains hierarchy of key-value pairs, that will be used to create <erp>_<feed> level configuration JSON file.
+#   'src_base_folder': S3 source files path till 'inbound' directory ( <erp>/<domain>/inbound )(do edit this parameter)
+#     Example: src_base_folder: 'alpha/sales/inbound'
+#   'sql_template_path': S3 'dags' directory path for current <erp>_<feed> till 'sf_sql'(do edit this parameter)
+#     Example: sql_template_path: 'dags/raw/sales/sales/alpha_sales/sf_sql'
+#   'sf_schema': Snowflake schema containing table(do edit this parameter)
+#     Example: sf_schema: 'sales'
+#   'sf_hist_table': Snowflake HIST table name(do edit this parameter)
+#     Example: sf_hist_table: 'alpha_sales_hist'
+#   'sf_snap_table': Snowflake SNAP table name(do edit this parameter)
+#   'sf_hist_stream': Snowflake stream name on HIST table(do edit this parameter)
+#     Example: sf_hist_stream: 'alpha_sales_hist_stream'
+#   'market_src_files': Key contains values of source file name for every applicable market(do edit this parameter)
+#     Key Format: market_file_<market_extension>
+#     Example: market_file_new: 'etl_sales.new' ( for market 'new' )
+config_values:
+  src_base_folder: 'alpha/organization/inbound'
+  sql_template_path: 'dags/raw/organization/division/alpha_division/sf_sql'
+  sf_schema: 'organization'
+  sf_hist_table: 'alpha_alpha_division_hist'
+  sf_snap_table: 'alpha_alpha_division_snap'
+  sf_hist_stream: 'alpha_alpha_division_hist_stream'
+  market_src_files: 
+    market_file_abq: 'etl_division.abq'
+    market_file_ash: 'etl_division.ash'
+    market_file_atl: 'etl_division.atl'
+    market_file_cfl: 'etl_division.cfl'
+    market_file_col: 'etl_division.col'
+    market_file_den: 'etl_division.den'
+    market_file_dfb: 'etl_division.dfb'
+    market_file_far: 'etl_division.far'
+    market_file_ind: 'etl_division.ind'
+    market_file_jac: 'etl_division.jac'
+    market_file_jes: 'etl_division.jes'
+    market_file_laf: 'etl_division.laf'
+    market_file_nor: 'etl_division.nor'
+    market_file_okl: 'etl_division.okl'
+    market_file_oma: 'etl_division.oma'
+    market_file_pen: 'etl_division.pen'
+    market_file_sav: 'etl_division.sav'
+    market_file_sio: 'etl_division.sio'
+    market_file_tam: 'etl_division.tam'
+    market_file_wsd: 'etl_division.wsd'

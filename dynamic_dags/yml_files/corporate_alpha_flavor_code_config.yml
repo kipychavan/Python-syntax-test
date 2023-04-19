@@ -1,0 +1,19 @@
+dags_dir_path: 'C:\projects\de-snowflake-airflow-processing\dags\raw\product\flavor_code\corporate_alpha_flavor_code'
+
+common_values:
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/product/flavor_code/corporate_alpha_flavor_code/config/corporate_alpha_flavor_code_config.json'
+  base_table_name: 'corporate_alpha_flavor_code'
+
+market_dag_list:
+  - market_ext: 'csv'
+
+config_values:
+  src_base_folder: 'alpha/product/inbound'
+  sql_template_path: 'dags/raw/customer/customer_type/corporate_alpha_flavor_code/sf_sql'
+  sf_schema: 'product'
+  sf_hist_table: 'corporate_alpha_flavor_code_hist'
+  sf_snap_table: 'corporate_alpha_flavor_code_snap'
+  sf_hist_stream: 'corporate_alpha_flavor_code_hist_stream'
+  market_src_files:
+    market_file_csv: 'etl_flavor_type.csv'

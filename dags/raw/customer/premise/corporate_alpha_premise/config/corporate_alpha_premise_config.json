@@ -1,0 +1,1 @@
+{"src_base_folder": "corporate-alpha/customer/inbound", "sql_template_path": "dags/raw/customer/premise/corporate_alpha_premise/sf_sql", "sf_schema": "customer", "sf_hist_table": "corporate_alpha_premise_hist", "sf_snap_table": "corporate_alpha_premise_snap", "sf_hist_stream": "corporate_alpha_premise_hist_stream", "market_src_files": {"market_file_csv": "etl_premise.csv"}}

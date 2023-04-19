@@ -1,0 +1,32 @@
+name: aws-s3-sync-dev
+
+on:
+    workflow_dispatch
+
+jobs:
+  deploy:
+    name: s3-sync-dev
+    
+    runs-on: ubuntu-latest
+    environment: dev
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - name: Update globalConfig file
+      run: |
+        sed -i 's|de-airflow-sandbox|${{ vars.AWS_S3_BUCKET_SOURCE }}|' .dags/raw/globalConfig.json
+        sed -i 's|db_raw_sandbox|${{ vars.SNOWFLAKE_DB_NAME }}|' .dags/raw/globalConfig.json
+        sed -i 's|sf_stage_sandbox|${{ vars.SNOWFLAKE_STAGE_NAME }}|' .dags/raw/globalConfig.json
+        sed -i 's|file_format_sandbox|${{ vars.SNOWFLAKE_FILE_FORMAT }}|' .dags/raw/globalConfig.json
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.DE_AIRFLOW_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.DE_AIRFLOW_AWS_ACCESS_KEY }}
+        aws-region: us-east-1
+        
+    - name: Sync changes to s3
+      run: aws s3 sync ./ ${{ vars.AWS_BUCKET_AIRFLOW }} --delete --exclude '.git/*' --exclude '.github/*' --exclude '.gitignore'

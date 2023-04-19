@@ -1,0 +1,21 @@
+dags_dir_path: 'C:\projects\de-snowflake-airflow-processing\dags\raw\product\product_division\as400az_product_division'
+
+common_values:
+  global_config_path: 'dags/raw/globalConfig.json'
+  dag_config_path: 'dags/raw/product/product_division/as400az_product_division/config/as400az_product_division_config.json'
+  base_table_name: 'as400az_product_division'
+
+market_dag_list:
+  - market_ext: 'pho'
+  - market_ext: 'tol'
+
+config_values:
+  src_base_folder: 'as400az/product/inbound'
+  sql_template_path: 'dags/raw/product/product_division/as400az_product_division/sf_sql'
+  sf_schema: 'product'
+  sf_hist_table: 'as400az_product_division_hist'
+  sf_snap_table: 'as400az_product_division_snap'
+  sf_hist_stream: 'as400az_product_division_hist_stream'
+  market_src_files:
+    market_file_pho: 'etl_prod_division.pho'
+    market_file_tol: 'etl_prod_division.tol'
